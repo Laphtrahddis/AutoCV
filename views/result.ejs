@@ -1,0 +1,513 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated CV Result</title>
+</head>
+<body>
+    <h1>Generated CV Result</h1>
+    <pre><%= output %></pre> 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic CV Ready! | AutoCV</title>
+    <style>
+        /* Include all the previous cosmic theme styles from index.ejs */
+        /* Add these additional styles */
+        :root {
+            --star-color: rgba(255, 255, 255, 0.8);
+            --space-gradient: linear-gradient(45deg, #0b0c1a, #1a1b2f, #2d1b3a);
+            --nebula-purple: #6c5ce7;
+            --deep-space: #0b0c1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Space Mono', monospace;
+        }
+
+        body {
+            background: var(--space-gradient);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .stars {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: var(--star-color);
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(11, 12, 26, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(108, 92, 231, 0.2);
+            position: relative;
+            backdrop-filter: blur(10px);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .brand-header {
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-header h1 {
+            font-weight: 300;
+            letter-spacing: 4px;
+            font-size: 3.5em;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #6c5ce7, #a66efa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 8s infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: 500;
+            color: #a66efa;
+            margin-bottom: 8px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #2d2d4d;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(26, 27, 47, 0.8);
+            color: #ffffff;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--nebula-purple);
+            box-shadow: 0 0 15px rgba(108, 92, 231, 0.3);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button[type="submit"] {
+            background: linear-gradient(45deg, #6c5ce7, #a66efa);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(11, 12, 26, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            text-align: center;
+        }
+
+        .galaxy-spinner {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, transparent, transparent 40%, #6c5ce7);
+            animation: rotate 1s linear infinite;
+            position: relative;
+            margin: 0 auto 20px;
+        }
+
+        .galaxy-spinner::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            background: var(--deep-space);
+            border-radius: 50%;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #6c5ce7, #a66efa);
+            transition: width 30s linear;
+        }
+
+        .gemini-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #636e72;
+            font-size: 0.9em;
+        }
+
+        .gemini-logo {
+            width: 120px;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 5px rgba(108, 92, 231, 0.5));
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 50px;
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: rgba(26, 27, 47, 0.3);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .form-section:hover {
+            transform: translateY(-3px);
+        }
+
+        .form-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .section-header {
+            border-left: 4px solid #6c5ce7;
+            padding-left: 20px;
+            margin: 40px 0 30px;
+            font-size: 1.8em;
+            letter-spacing: 2px;
+        }
+
+        label {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            min-height: 150px;
+            font-size: 1.05em;
+            padding: 18px;
+        }
+
+        .form-grid > div {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (min-width: 1600px) {
+            .container {
+                max-width: 1400px;
+            }
+            
+            .form-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        html {
+    min-height: 100%;
+    background: var(--space-gradient);
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--space-gradient);
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    margin: 40px auto 100px; /* Added bottom margin */
+}
+
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Send stars to background */
+}
+
+/* Add cosmic pattern overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, transparent 75%, rgba(108, 92, 231, 0.1)),
+        repeating-linear-gradient(
+            45deg,
+            rgba(11, 12, 26, 0.8) 0px,
+            rgba(11, 12, 26, 0.8) 2px,
+            transparent 2px,
+            transparent 4px
+        );
+    pointer-events: none;
+    z-index: -1;
+}
+        
+        .result-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: cosmicAppear 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        }
+
+        @keyframes cosmicAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            background: linear-gradient(45deg, #6c5ce7, #a66efa);
+            -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+
+        .copy-box {
+            position: relative;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(26, 27, 47, 0.5);
+            border-radius: 12px;
+            border: 1px solid #6c5ce755;
+        }
+
+        #copyButton {
+            background: linear-gradient(45deg, #6c5ce7, #a66efa);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #copyButton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        #copyButton:active {
+            transform: translateY(0);
+        }
+
+        #latexOutput {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .rocket-animation {
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 200px;
+            animation: launchRocket 2s ease-out forwards;
+        }
+
+        @keyframes launchRocket {
+            0% {
+                transform: translate(0, 0) rotate(45deg);
+            }
+            100% {
+                transform: translate(-150vw, -150vh) rotate(45deg);
+            }
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #6c5ce7;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSIjZmZmIj48cGF0aCBkPSJNMi4wMSAyMS42OUwxMy4wMiAyLjg2Yy4zMS0uNDQuOTUtLjA0Ljg1LjU1bC0xLjUyIDkuMDdMOCA4LjVMMTIgMTBsLTQgMS41IDMuOTggNC4wNi0xLjU1IDEuMzhMMTUuNSAxNWwuNSA0LjUtNS42NC0yLjYzTDIuMDEgMjEuNjd6TTIwLjI1IDNsLTUuNDMgNi45MyAxLjExLTEuNCAyLjQzIDIuNDQgMS4yNy0xLjYxLTEuNjktMS42OSAyLjg0LTMuNjF6Ii8+PC9zdmc+" 
+         class="rocket-animation" alt="Rocket">
+
+    <div class="result-container">
+        <h1 class="success-message">🚀 LaTeX CV Ready for Launch!</h1>
+        
+        <div class="copy-box">
+            <button id="copyButton">📋 Copy LaTeX Code to Clipboard</button>
+            <textarea id="latexOutput" style="display: none;"><%= output %></textarea>
+        </div>
+
+        <p class="cosmic-hint">✨ Your cosmic CV has been generated! Simply paste the code into your LaTeX editor</p>
+    </div>
+
+    <div class="notification" id="copyNotification">Copied to clipboard! 🎉</div>
+
+    <script>
+        // Clipboard functionality
+        document.getElementById('copyButton').addEventListener('click', () => {
+            const textarea = document.getElementById('latexOutput');
+            textarea.select();
+            try {
+                navigator.clipboard.writeText(textarea.value);
+                showNotification('Copied to clipboard! 🎉');
+            } catch (err) {
+                showNotification('Failed to copy 😢');
+            }
+        });
+
+        function showNotification(text) {
+            const notif = document.getElementById('copyNotification');
+            notif.textContent = text;
+            notif.style.display = 'block';
+            setTimeout(() => {
+                notif.style.display = 'none';
+            }, 3000);
+        }
+        
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 5 + 's';
+                star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+        // Add stars animation from previous implementation
+        // [Include the same stars creation script from index.ejs]
+    </script>
+</body>
+</html>

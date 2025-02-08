@@ -1,263 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Form</title>
-</head>
-<body>
-    <h2>Personal Information Form</h2>
-    <form action="/submit" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="Enter a brief summary about yourself." required><br><br>
-        
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address" required><br><br>
-        
-        <label for="email">Email ID:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
-        
-        <label for="linkedin">LinkedIn Username:</label>
-        <input type="text" id="linkedin" name="linkedin"><br><br>
-        
-        <label for="github">GitHub Username:</label>
-        <input type="text" id="github" name="github"><br><br>
-        
-        <label for="summary">Summary:</label><br>
-        <textarea id="summary" name="summary" rows="4" cols="50"></textarea><br><br>
-        
-        <label for="skills">Technical Skills:</label><br>
-        <textarea id="skills" name="skills" rows="3" cols="50"></textarea><br><br>
-        
-        <label for="education">Education:</label><br>
-        <textarea id="education" name="education" rows="3" cols="50"></textarea><br><br>
-        
-        <label for="experience">Experience:</label><br>
-        <textarea id="experience" name="experience" rows="3" cols="50"></textarea><br><br>
-        
-        <label for="projects">Projects:</label><br>
-        <textarea id="projects" name="projects" rows="3" cols="50"></textarea><br><br>
-        
-        <label for="achievements">Achievements:</label><br>
-        <textarea id="achievements" name="achievements" rows="3" cols="50"></textarea><br><br>
-        
-        <label for="languages">Languages:</label><br>
-        <textarea id="languages" name="languages" rows="2" cols="50"></textarea><br><br>
-        
-        <button type="submit">Submit</button>
-    </form>
-</body>
-</html> -->
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoCV - Professional Resume Builder</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            color: #2d3436;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #2d3436;
-            font-weight: 300;
-            font-size: 2.4em;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        label {
-            font-weight: 500;
-            color: #636e72;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #dfe6e9;
-            border-radius: 6px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background-color: #fdfdfd;
-        }
-
-        input:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #a8dadc;
-            box-shadow: 0 0 0 3px rgba(168, 218, 220, 0.2);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button[type="submit"] {
-            background: #2d3436;
-            color: white;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        button[type="submit"]:hover {
-            background: #636e72;
-            transform: translateY(-1px);
-        }
-
-        .brand-header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
-            color: white;
-            margin-bottom: 40px;
-        }
-
-        .brand-header h1 {
-            font-weight: 300;
-            letter-spacing: 2px;
-            font-size: 2.8em;
-        }
-
-        .gemini-footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #636e72;
-            font-size: 0.9em;
-        }
-
-        .gemini-logo {
-            width: 120px;
-            margin: 0 auto;
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .container {
-                margin: 20px;
-                padding: 25px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="brand-header">
-        <h1>AutoCV</h1>
-        <p>Professional Resume Builder powered by AI</p>
-    </div>
-
-    <div class="container">
-        <h2>Personal Information</h2>
-        <form action="/submit" method="POST">
-            <div class="form-grid">
-                <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div>
-                    <label for="email">Email ID:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div>
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                <div>
-                    <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" required>
-                </div>
-                <div>
-                    <label for="linkedin">LinkedIn Username:</label>
-                    <input type="text" id="linkedin" name="linkedin">
-                </div>
-                <div>
-                    <label for="github">GitHub Username:</label>
-                    <input type="text" id="github" name="github">
-                </div>
-            </div>
-
-            <label for="summary">Summary:</label>
-            <textarea id="summary" name="summary" rows="4"></textarea>
-
-            <label for="skills">Technical Skills:</label>
-            <textarea id="skills" name="skills" rows="3"></textarea>
-
-            <label for="education">Education:</label>
-            <textarea id="education" name="education" rows="3"></textarea>
-
-            <label for="experience">Experience:</label>
-            <textarea id="experience" name="experience" rows="3"></textarea>
-
-            <label for="projects">Projects:</label>
-            <textarea id="projects" name="projects" rows="3"></textarea>
-
-            <label for="achievements">Achievements:</label>
-            <textarea id="achievements" name="achievements" rows="3"></textarea>
-
-            <label for="languages">Languages:</label>
-            <textarea id="languages" name="languages" rows="2"></textarea>
-
-            <button type="submit">Generate Professional Resume →</button>
-        </form>
-    </div>
-
-    <div class="gemini-footer">
-        <svg class="gemini-logo" viewBox="0 0 24 24" fill="#6c5ce7" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.75C6.062 22.75 1.25 17.938 1.25 12S6.062 1.25 12 1.25 22.75 6.062 22.75 12 17.938 22.75 12 22.75zm5.5-9.5h-11v-2.5h11v2.5z"/>
-        </svg>
-        <p>Powered by Gemini API</p>
-    </div>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -558,45 +298,7 @@
     overflow-x: hidden;
 }
 
-body {
-    background: var(--space-gradient);
-    overflow-x: hidden;
-    position: relative;
-}
 
-.container {
-    margin: 40px auto 100px; /* Added bottom margin */
-}
-
-.stars {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1; /* Send stars to background */
-}
-
-/* Add cosmic pattern overlay */
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        linear-gradient(45deg, transparent 75%, rgba(108, 92, 231, 0.1)),
-        repeating-linear-gradient(
-            45deg,
-            rgba(11, 12, 26, 0.8) 0px,
-            rgba(11, 12, 26, 0.8) 2px,
-            transparent 2px,
-            transparent 4px
-        );
-    pointer-events: none;
-    z-index: -1;
-}
 
     </style>
 </head>
@@ -626,15 +328,15 @@ body::after {
                 </div>
                 <div class="form-section">
                     <label for="address">Address:</label>
-                    <input type="text" id="address" name="address" required>
+                    <input type="text" id="address" name="address" value="City, State, Country" required>
                 </div>
                 <div class="form-section">
                     <label for="linkedin">LinkedIn:</label>
-                    <input type="text" id="linkedin" name="linkedin">
+                    <input type="text" id="linkedin" name="linkedin" value="Username">
                 </div>
                 <div class="form-section">
                     <label for="github">GitHub:</label>
-                    <input type="text" id="github" name="github">
+                    <input type="text" id="github" name="github" value="Username">
                 </div>
             </div>
 
@@ -642,33 +344,116 @@ body::after {
             
             <div class="form-section full-width">
                 <label for="summary">Summary:</label>
-                <textarea id="summary" name="summary" rows="4"></textarea>
+                <textarea id="summary" name="summary" rows="4">Preferably write a short summary about yourself, else no worries, the AI will do it for you! </textarea>
             </div>
 
             <div class="form-grid">
                 <div class="form-section">
                     <label for="skills">Technical Skills:</label>
-                    <textarea id="skills" name="skills" rows="3"></textarea>
+                    <textarea id="skills" name="skills" rows="3">List your relevant technical skills in the categories that apply to you. Modify or remove categories as needed.  
+
+                        Programming Languages:  
+                        Frameworks & Libraries:  
+                        Databases:  
+                        Development Tools:  
+                        Other Technical Skills:</textarea>
                 </div>
                 <div class="form-section">
                     <label for="education">Education:</label>
-                    <textarea id="education" name="education" rows="3"></textarea>
+                    <textarea id="education" name="education" rows="3"  >Bachelor of Technology in  
+                        University:  
+                        City:  
+                        Expected Graduation:  
+                        CGPA:  
+                        
+                        Secondary & Senior Secondary Education  
+                        Board:  
+                        Class 12 Percentage:  
+                        Class 10 Percentage: </textarea>
                 </div>
                 <div class="form-section">
                     <label for="experience">Experience:</label>
-                    <textarea id="experience" name="experience" rows="3"></textarea>
+                    <textarea id="experience" name="experience" rows="3">Provide details of up to three experiences, such as internships, research, part-time work, or any relevant professional experience. If you have more experiences, copy and extend this format accordingly.  
+
+                        Experience 1:  
+                        Job Title:  
+                        Company/Organization:  
+                        Location (if applicable):  
+                        Project/Work Description:  
+                        Key Responsibilities:  
+                        Skills Used:  
+                        Start Date – End Date:  
+                        
+                        Experience 2:  
+                        Job Title:  
+                        Company/Organization:  
+                        Location (if applicable):  
+                        Project/Work Description:  
+                        Key Responsibilities:  
+                        Skills Used:  
+                        Start Date – End Date:  
+                        
+                        Experience 3:  
+                        Job Title:  
+                        Company/Organization:  
+                        Location (if applicable):  
+                        Project/Work Description:  
+                        Key Responsibilities:  
+                        Skills Used:  
+                        Start Date – End Date:  
+                        
+                        Additional Positions:  
+                        If you have held other roles, such as a core member of a club, student organization, or any leadership position, you can include them here:  
+                        
+                        Position:  
+                        Organization/Club:  
+                        Responsibilities:  
+                        Start Date – End Date: 
+                        </textarea>
                 </div>
                 <div class="form-section">
                     <label for="projects">Projects:</label>
-                    <textarea id="projects" name="projects" rows="3"></textarea>
+                    <textarea id="projects" name="projects" rows="3">List up to three relevant projects, such as academic projects, personal projects, open-source contributions, or hackathon projects. If you need to add more, copy and paste the format below. Modify or remove sections as needed.  
+
+                        Project 1  
+                        Project Name:  
+                        Completion Date (Month Year or Ongoing):  
+                        Project Description:  
+                        - Key feature or functionality  
+                        - Key feature or functionality  
+                        - Key feature or functionality  
+                        Skills Used:  
+                        Project Link (GitHub, website, etc.):  
+                        
+                        Project 2  
+                        Project Name:  
+                        Completion Date (Month Year or Ongoing):  
+                        Project Description:  
+                        - Key feature or functionality  
+                        - Key feature or functionality  
+                        - Key feature or functionality  
+                        Skills Used:  
+                        Project Link (GitHub, website, etc.):  
+                        
+                        Project 3  
+                        Project Name:  
+                        Completion Date (Month Year or Ongoing):  
+                        Project Description:  
+                        - Key feature or functionality  
+                        - Key feature or functionality  
+                        - Key feature or functionality  
+                        Skills Used:  
+                        Project Link (GitHub, website, etc.): </textarea>
                 </div>
                 <div class="form-section">
                     <label for="achievements">Achievements:</label>
-                    <textarea id="achievements" name="achievements" rows="3"></textarea>
+                    <textarea id="achievements" name="achievements" rows="3">List any notable achievements, awards, certifications, or recognitions. These can be academic, professional, or personal accomplishments.</textarea>
                 </div>
                 <div class="form-section">
                     <label for="languages">Languages:</label>
-                    <textarea id="languages" name="languages" rows="2"></textarea>
+                    <textarea id="languages" name="languages" rows="2">List the languages you know along with proficiency levels if necessary (e.g., Fluent, Conversational, Basic).   
+
+                        Languages:</textarea>
                 </div>
             </div>
 

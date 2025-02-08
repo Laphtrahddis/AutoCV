@@ -1,12 +1,22 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import 'dotenv/config';
+const API_KEY = process.env.GEMINI_API_KEY;
+
 
 import express from "express";
 import bodyParser from "body-parser";
+import { writeFile } from 'fs/promises';
+import { join } from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = join(__filename, '..'); 
+import { readFile } from 'fs/promises';
 
+let completeCV = "";
 const app = express();
 const port = 3000;
 
-const genAI = new GoogleGenerativeAI("AIzaSyA7uvXSfWXxR5eYFi3loXYxeTtTyYDeqIg");
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 // Middleware to parse form data
@@ -71,7 +81,7 @@ app.post("/submit", async (req, res) => {
       },
     ];
 
-    let completeCV = String.raw`\documentclass[10pt, letterpaper]{article}
+    completeCV = String.raw`\documentclass[10pt, letterpaper]{article}
 
 % Packages:
 \usepackage[
@@ -356,6 +366,7 @@ Plain Text Response – Reply without a code block to ensure direct usability.
 No Extra Text – Output only the LaTeX code, no explanations, greetings, or comments.
 use \% where you want to print % to avoid commenting the rest of the line!
 Use only these details to generate the LaTeX code below. Ignore any additional information beyond the provided fields.
+You can create a new section for Activities if only you find its applicable. (example: Volunteer Experience, Leadership Experience, etc.)
 user data: ${formData.experience}
 LaTeX Code Template
 \section*{Experience}
@@ -477,6 +488,46 @@ user's languages: ${formData.languages}
     console.error("Error:", error);
     res.send("An error occurred!");
   }
+  console.log('Calling saveCVToFile...');
+  async function saveCVToFile(completeCV) {
+    try {
+        console.log('Inside saveCVToFile function'); // Log when function starts
+
+        const filePath = join(__dirname, 'code.tex');
+        console.log('File path resolved:', filePath); // Log resolved path
+        
+        await writeFile(filePath, completeCV);
+        console.log('CV saved successfully as code.tex'); // Log success
+    } catch (err) {
+        console.error('Error writing file:', err); // Log error if any
+    }
+}
+saveCVToFile(completeCV);
+
+
+
+async function convertFileToBase64() {
+    try {
+        const filePath = join(__dirname, 'code.tex'); // Path to your file
+        console.log('Reading file:', filePath);
+
+        const fileBuffer = await readFile(filePath); // Read file as a buffer
+        const base64String = fileBuffer.toString('base64'); // Convert buffer to Base64
+
+        console.log('Base64 Encoded String:', base64String); // Log the output
+        return base64String; // Return if needed elsewhere
+    } catch (err) {
+        console.error('Error reading file:', err);
+    }
+}
+
+convertFileToBase64();
+
+});
+
+
+app.get('/code.tex', (req, res) => {
+    res.sendFile(path.join(__dirname, 'code.tex'));
 });
 
 

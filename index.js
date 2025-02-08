@@ -3,6 +3,7 @@ import 'dotenv/config';
 const API_KEY = process.env.GEMINI_API_KEY;
 
 
+
 import express from "express";
 import bodyParser from "body-parser";
 import { writeFile } from 'fs/promises';
@@ -14,7 +15,7 @@ import { readFile } from 'fs/promises';
 
 let completeCV = "";
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 4000;
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
@@ -522,12 +523,14 @@ async function convertFileToBase64() {
 }
 
 convertFileToBase64();
+process.exit(1);
 
 });
 
 
 app.get('/code.tex', (req, res) => {
     res.sendFile(path.join(__dirname, 'code.tex'));
+    exit(1);
 });
 
 

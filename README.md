@@ -33,18 +33,29 @@ Ensure you have the following installed:
    git clone https://github.com/Laphtrahddis/AutoCV.git
    cd AutoCV
    ```
+
 2. **Install dependencies**:
    ```bash
    npm install
    ```
-3. **Run the backend**:
+
+3. **Configure environment variables**:
+   Create a `.env` file in the root directory and add your Gemini API key:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+   > ⚠️ Make sure `.env` is included in `.gitignore` and not committed to the repository.
+
+4. **Run the backend**:
    ```bash
    node index.js
    ```
-4. **Run the frontend**:
+
+5. **Run the frontend**:
    ```bash
-   open http://localhost:4000/ 
+   open http://localhost:4000/
    ```
+
 
 ## Usage
 
